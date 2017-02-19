@@ -94,6 +94,14 @@ fs.readdir('./plugins', function(err, files) {
 });
 
 /**
+ * Support "plugins" config setting
+ */
+var dynamicPlugins = [].concat(nconf.get('plugins'));
+dynamicPlugins.forEach(function(plugin){
+    app.use('/plugins/'+plugin, require('./avail_plugins/'+plugin)(function(data){notify(plugin,data);}));
+});
+
+/**
  * Callback to the SmartThings Hub via HTTP NOTIFY
  * @param {String} plugin - The name of the STNP plugin
  * @param {String} data - The HTTP message body
