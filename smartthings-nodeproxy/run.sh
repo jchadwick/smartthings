@@ -5,7 +5,7 @@ if [ -d config ]; then
     cp -rvf config/* ./
 fi
 
-if [ ! -e config.js ]; then
+if [ ! -e config.json ]; then
     echo
     echo
     echo "********************************************************"
